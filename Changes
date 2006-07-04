@@ -1,0 +1,16 @@
+Revision history for Perl extension Email::MIME::Encodings.
+
+1.3    2004-10-22
+
+  - Dependencies changed output formats. Thanks to many for
+    reporting but thanks to Nick Clark for finding the actual
+    problem.
+
+1.2    2004-09-25
+
+  - Dependency fixes, author fixes.
+
+0.01  Thu Apr 10 15:00:16 2003
+	- original version; created by h2xs 1.2 with options
+		-AX -n Email::MIME::Encodings
+
