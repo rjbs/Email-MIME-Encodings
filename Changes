@@ -1,5 +1,9 @@
 Revision history for Perl extension Email::MIME::Encodings.
 
+1.31   2006-07-06
+
+  - move tests to t/
+
 1.3    2004-10-22
 
   - Dependencies changed output formats. Thanks to many for
