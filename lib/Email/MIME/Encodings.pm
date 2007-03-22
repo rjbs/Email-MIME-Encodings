@@ -3,7 +3,7 @@ use strict;
 no strict 'refs';
 use warnings;
 
-$Email::MIME::Encodings::VERSION = "1.310";
+$Email::MIME::Encodings::VERSION = "1.311";
 
 use MIME::Base64;
 use MIME::QuotedPrint;
@@ -47,25 +47,15 @@ This module simply wraps C<MIME::Base64> and C<MIME::QuotedPrint>
 so that you can throw the contents of a C<Content-Transfer-Encoding>
 header at some text and have the right thing happen.
 
+=head1 PERL EMAIL PROJECT
+
+This module is maintained by the Perl Email Project.
+
+L<http://emailproject.perl.org/wiki/Email::MIME::Encodings>
+
 =head1 AUTHOR
 
 Simon Cozens, C<simon@cpan.org>
-
-=head1 SUPPORT
-
-Beep... beep... this is a recorded announcement:
-
-I've released this software because I find it useful, and I hope you
-might too. But I am a being of finite time and I'd like to spend more of
-it writing cool modules like this and less of it answering email, so
-please excuse me if the support isn't as great as you'd like.
-
-Nevertheless, there is a general discussion list for users of all my
-modules, to be found at
-http://lists.netthink.co.uk/listinfo/module-mayhem
-
-If you have a problem with this module, someone there will probably have
-it too.
 
 =head1 SEE ALSO
 
