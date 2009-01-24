@@ -1,4 +1,7 @@
-Revision history for Perl extension Email::MIME::Encodings.
+Revision history for Perl extension Email-MIME-Encodings
+
+1.312     2009-01-22
+          add repo metadata
 
 1.311     2007-03-22
           packaging improvements

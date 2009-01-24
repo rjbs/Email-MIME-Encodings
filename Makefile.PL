@@ -9,4 +9,12 @@ WriteMakefile(
     'MIME::Base64'      => '3.05',
     'MIME::QuotedPrint' => '3.03',
   },
+  (eval { ExtUtils::MakeMaker->VERSION(6.46) }
+    ? (META_MERGE => {
+        resources => {
+          Repository => 'http://github.com/rjbs/email-mime-encodings'
+        }
+      })
+    : ()
+  ),
 );
