@@ -12,7 +12,7 @@ WriteMakefile(
   (eval { ExtUtils::MakeMaker->VERSION(6.46) }
     ? (META_MERGE => {
         resources => {
-          Repository => 'http://github.com/rjbs/email-mime-encodings'
+          repository => 'http://github.com/rjbs/email-mime-encodings'
         }
       })
     : ()
