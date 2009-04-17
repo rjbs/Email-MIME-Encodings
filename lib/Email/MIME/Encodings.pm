@@ -3,7 +3,7 @@ use strict;
 no strict 'refs';
 use warnings;
 
-$Email::MIME::Encodings::VERSION = "1.312";
+$Email::MIME::Encodings::VERSION = "1.313";
 
 use MIME::Base64;
 use MIME::QuotedPrint;
