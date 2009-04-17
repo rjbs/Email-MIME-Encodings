@@ -18,8 +18,9 @@ sub codec {
     my ($which, $how, $what) = @_;
     $how = lc $how;
     $how = "qp" if $how eq "quotedprint" or $how eq "quoted-printable";
-    my $sub = $which."_".$how;
-    if (not defined &$sub) {
+    my $sub = __PACKAGE__->can("$which\_$how");
+
+    unless ($sub) {
         require Carp;
         Carp::croak("Don't know how to $which $how");
     }
@@ -40,11 +41,15 @@ sub codec {
     # that the encoder should end lines with CRLF (since that's the email
     # standard).
     # -- rjbs and mkanat, 2009-04-16
-    my $eol = "\015\012";
-    if ($how eq 'qp') {
-        $what =~ s/$eol/\012/sg;
+    my $eol = "\x0d\x0a";
+    if ($which eq 'encode') {
+        $what =~ s/$eol/\x0a/sg if $how eq 'qp';
+        return $sub->($what, $eol);
+    } else {
+        my $txt = $sub->($what);
+        $txt =~ s/\x0a/$eol/sg if $how eq 'qp';
+        return $txt;
     }
-    $sub->($what, $eol);
 }
 
 sub decode { return codec("decode", @_) }
