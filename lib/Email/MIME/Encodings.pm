@@ -23,7 +23,28 @@ sub codec {
         require Carp;
         Carp::croak("Don't know how to $which $how");
     }
-    $sub->($what);
+
+    # RFC2822 requires all email lines to end in CRLF. The Quoted-Printable
+    # RFC requires CRLF to not be encoded, when representing newlins.  We will
+    # assume, in this code, that QP is being used for plain text and not binary
+    # data.  This may, someday, be wrong -- but if you are using QP to encode
+    # binary data, you are already doing something bizarre.
+    #
+    # The only way to achieve this with MIME::QuotedPrint is to replace all
+    # CRLFs with just LF and then let MIME::QuotedPrint replace all LFs with
+    # CRLF. Otherwise MIME::QuotedPrint (by default) encodes CR as =0D, which
+    # is against RFCs and breaks MUAs (such as Thunderbird).
+    #
+    # We don't modify data before Base64 encoding it because that is usually
+    # binary data and modifying it at all is a bad idea. We do however specify
+    # that the encoder should end lines with CRLF (since that's the email
+    # standard).
+    # -- rjbs and mkanat, 2009-04-16
+    my $eol = "\015\012";
+    if ($how eq 'qp') {
+        $what =~ s/$eol/\012/sg;
+    }
+    $sub->($what, $eol);
 }
 
 sub decode { return codec("decode", @_) }
