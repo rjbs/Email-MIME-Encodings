@@ -9,10 +9,8 @@ for (qw(binary 7bit 8bit)) {
 }
 
 $y = "This is a test${CRLF}of various MIME=3Dstuff.=${CRLF}";
-is_binary(Email::MIME::Encodings::encode(quotedprint => $x), $y, "enc qp");
-is_binary(Email::MIME::Encodings::decode(quotedprint => $y), $x, "dec qp");
-
-use Test::BinaryData;
+is(Email::MIME::Encodings::encode(quotedprint => $x), $y, "enc qp");
+is(Email::MIME::Encodings::decode(quotedprint => $y), $x, "dec qp");
 
 $z = "VGhpcyBpcyBhIHRlc3QNCm9mIHZhcmlvdXMgTUlNRT1zdHVmZi4=${CRLF}";
 is(Email::MIME::Encodings::encode(base64 => $x), $z, "enc 64");
