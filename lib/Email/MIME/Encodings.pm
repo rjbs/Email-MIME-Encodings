@@ -3,7 +3,7 @@ use strict;
 no strict 'refs';
 use warnings;
 
-$Email::MIME::Encodings::VERSION = "1.313";
+$Email::MIME::Encodings::VERSION = "1.314";
 
 use MIME::Base64;
 use MIME::QuotedPrint;
@@ -15,10 +15,16 @@ for (qw(7bit 8bit binary)) {
 }
 
 sub codec {
-    my ($which, $how, $what) = @_;
+    my ($which, $how, $what, $fb) = @_;
     $how = lc $how;
     $how = "qp" if $how eq "quotedprint" or $how eq "quoted-printable";
     my $sub = __PACKAGE__->can("$which\_$how");
+
+    if (! $sub && $fb) {
+        $fb = lc $fb;
+        $fb = "qp" if $fb eq "quotedprint" or $fb eq "quoted-printable";
+        $sub = __PACKAGE__->can("$which\_$fb");
+    }
 
     unless ($sub) {
         require Carp;
@@ -66,6 +72,10 @@ Email::MIME::Encodings - A unified interface to MIME encoding and decoding
   use Email::MIME::Encodings;
   my $encoded = Email::MIME::Encodings::encode(base64 => $body);
   my $decoded = Email::MIME::Encodings::decode(base64 => $encoded);
+
+If a third argument is given, it is the encoding to which to fall back.  If no
+valid codec can be found (considering both the first and third arguments) then
+an exception is raised.
 
 =head1 DESCRIPTION
 
