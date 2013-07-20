@@ -31,7 +31,7 @@ sub codec {
     }
 
     # RFC2822 requires all email lines to end in CRLF. The Quoted-Printable
-    # RFC requires CRLF to not be encoded, when representing newlins.  We will
+    # RFC requires CRLF to not be encoded, when representing newlines.  We will
     # assume, in this code, that QP is being used for plain text and not binary
     # data.  This may, someday, be wrong -- but if you are using QP to encode
     # binary data, you are already doing something bizarre.
