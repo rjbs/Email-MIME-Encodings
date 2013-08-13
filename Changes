@@ -1,5 +1,8 @@
 Revision history for Perl extension Email-MIME-Encodings
 
+{{$NEXT}}
+          repackage to update repository and bug tracker
+
 1.314     2013-06-17
           add a third argument to encode/decode/codec to allow a fallback
           codec
