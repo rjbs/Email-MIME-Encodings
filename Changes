@@ -1,6 +1,7 @@
 Revision history for Perl extension Email-MIME-Encodings
 
 {{$NEXT}}
+          update packaging and metadata
 
 1.315     2013-08-12 21:11:46 America/New_York
           repackage to update repository and bug tracker
